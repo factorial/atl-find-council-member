@@ -32,7 +32,11 @@ function displayCandidates(candidates) {
   if (candidates) {
     const elements = candidates.map((candidate) => {
       const element = document.createElement("div");
-      element.classList.add("selectable-candidate");
+      element.classList.add(
+        "text-gray500",
+        "hover:text-gray-600",
+        "cursor-pointer"
+      );
       element.innerHTML = `${candidate.address}`;
       element.addEventListener("click", () => selectCandidate(candidate));
       return element;
