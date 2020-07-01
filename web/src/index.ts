@@ -21,7 +21,26 @@ function selectCandidate(candidate) {
     const input = <HTMLInputElement>document.getElementById("address-input");
     input.value = candidate.address;
     const list = document.getElementById("candidates");
-    list.innerHTML = `District ${record.COUNCIL_DIST} : ${record.COUNCIL_MEMBER}`;
+    list.innerHTML = "";
+
+    const district = document.createElement("div");
+    district.classList.add(
+      "w-1/3",
+      "p-5",
+      "bg-green-100",
+      "text-center",
+      "text-xl"
+    );
+    district.innerHTML = `${record.COUNCIL_DIST}`;
+
+    const member = document.createElement("div");
+    member.classList.add("w-2/3", "bg-green-100", "py-5", "text-left");
+    member.innerHTML = `${record.COUNCIL_MEMBER}`;
+
+    const profile = document.getElementById("selected-candidate");
+    profile.innerHTML = "";
+    profile.appendChild(district);
+    profile.appendChild(member);
   });
 }
 
@@ -33,7 +52,6 @@ function displayCandidates(candidates) {
     const elements = candidates.map((candidate) => {
       const element = document.createElement("div");
       element.classList.add(
-        "w
         "text-gray-500",
         "hover:text-gray-600",
         "cursor-pointer",
