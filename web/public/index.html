@@ -5,30 +5,34 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Atlanta City Council Districts" />
-    <link rel="stylesheet" type="text/css" href="/index.css" />
+    <link rel="stylesheet" type="text/css" href="index.css" />
     <title>ATL City Council Districts</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
 
-    <div id="app">
-      <div style="display: none;" id="map"></div>
-
-      <p>Enter your address to find your city council member:</p>
+    <div class="grid grid-cols-1">
+      <div class="px-5 bg-green-300 text-center text-xl">
+        Atlanta City Council Member Finder
+      </div>
 
       <input
+        class="w-full rounded m-5 px-5"
         id="address-input"
         type="text"
         placeholder="123 Peachtree St, Atlanta GA"
       />
+
+      <div style="display: none;" id="map"></div>
+
       <div id="candidates"></div>
 
       <hr />
-      <small
-        ><a href="https://github.com/abrie/atl-find-council-member"
+      <div class="text-sm text-right">
+        <a href="https://github.com/abrie/atl-find-council-member"
           >Source on Github</a
-        ></small
-      >
+        >
+      </div>
     </div>
 
     <script type="module" src="/_dist_/index.js"></script>
