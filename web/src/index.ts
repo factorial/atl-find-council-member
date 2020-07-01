@@ -1,6 +1,6 @@
 import debounce from "lodash.debounce";
 
-import { checkResponse } from "./utils";
+import { checkResponse, createElement } from "./utils";
 import { fetchAddressCandidates, fetchCandidate } from "./mapatlapi";
 
 function searchAddress(address) {
@@ -16,6 +16,14 @@ function getRecord(candidate) {
     .then((resp) => resp.json());
 }
 
+function councilMemberNameToSlug(name: string): string {
+  const slug = name
+    .replace(/[^\w\s]/g, "")
+    .toLowerCase()
+    .replace(/ /g, "-");
+  return `https://citycouncil.atlantaga.gov/council-members/${slug}`;
+}
+
 function selectCandidate(candidate) {
   getRecord(candidate).then(([record]) => {
     const input = <HTMLInputElement>document.getElementById("address-input");
@@ -23,24 +31,33 @@ function selectCandidate(candidate) {
     const list = document.getElementById("candidates");
     list.innerHTML = "";
 
-    const district = document.createElement("div");
-    district.classList.add(
-      "w-1/3",
-      "p-5",
-      "bg-green-100",
-      "text-center",
-      "text-xl"
-    );
-    district.innerHTML = `${record.COUNCIL_DIST}`;
-
-    const member = document.createElement("div");
-    member.classList.add("w-2/3", "bg-green-100", "py-5", "text-left");
-    member.innerHTML = `${record.COUNCIL_MEMBER}`;
-
     const profile = document.getElementById("selected-candidate");
     profile.innerHTML = "";
-    profile.appendChild(district);
-    profile.appendChild(member);
+
+    profile.appendChild(
+      createElement({
+        tagName: "div",
+        className: "w-1/3 p-5 bg-green-100 text-center text-xl",
+        text: `${record.COUNCIL_DIST}`,
+      })
+    );
+
+    const link = {
+      tagName: "a",
+      className: "underline text-blue-500",
+      text: `${record.COUNCIL_MEMBER}`,
+      attributes: {
+        href: councilMemberNameToSlug(record.COUNCIL_MEMBER),
+      },
+    };
+
+    profile.appendChild(
+      createElement({
+        tagName: "div",
+        className: "w-2/3 bg-green-100 py-5 text-left",
+        childs: [link],
+      })
+    );
   });
 }
 
