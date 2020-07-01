@@ -1,41 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Atlanta City Council Districts" />
-    <link rel="stylesheet" type="text/css" href="index.css" />
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+    <link rel="icon" href="favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Atlanta City Council Districts">
+    <link rel="stylesheet" type="text/css" href="index.css">
     <title>ATL City Council Districts</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
 
-    <div class="grid grid-cols-1">
-      <div class="px-5 bg-green-300 text-center text-xl">
+    <section class="grid grid-cols-1">
+      <div class="p-5 bg-green-300 text-center text-gray-800 text-xl">
         Atlanta City Council Member Finder
       </div>
 
-      <input
-        class="w-full rounded px-5"
-        id="address-input"
-        type="text"
-        placeholder="123 Peachtree St, Atlanta GA"
-      />
+      <div class="p-5 pb-1">
+        <div class="w-11/12 pt-2 relative mx-auto text-gray-600 pb-2">
+          <input class="w-full border-2 border-gray-400 bg-white h-10 px-5 pl-8 rounded-lg text-sm focus:outline-none" type="search" name="search" id="address-input" placeholder="123 Peachtree St, Atlanta GA">
+
+          <button type="submit" class="absolute left-0 top-0 mt-5 ml-2">
+            <svg class="text-gray-300 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 56.966 56.966" style="enable-background: new 0 0 56.966 56.966;" xml:space="preserve" width="512px" height="512px">
+              <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
 
       <div style="display: none;" id="map"></div>
 
-      <div id="candidates"></div>
-
-      <hr />
-      <div class="text-sm text-right">
-        <a href="https://github.com/abrie/atl-find-council-member"
-          >Source on Github</a
-        >
+      <div class="pl-10" id="candidates">
+        <div class="text-gray-500 hover:text-gray-600 cursor-pointer">
+          123 Peachtree St, Apt 123, Atlanta GA, 30309
+        </div>
       </div>
-    </div>
 
-    <script src="js/index.4df7bf91239509b5da47.js"></script>
+      <hr>
+      <div class="text-sm text-right p-2 text-gray-400">
+        <a href="https://github.com/abrie/atl-find-council-member">Source on Github</a>
+      </div>
+    </section>
+
+    <script src="js/index.0ad693e44412116d561d.js"></script>
 
     <!--
       This HTML file is a template.
@@ -47,5 +52,6 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-  </body>
-</html>
+  
+
+</body></html>

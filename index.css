@@ -1,4 +1,4 @@
-$ /Users/anvil/development/codeforatl/districts/web/node_modules/.bin/postcss src/index.css
+$ /Users/anvil/development/codeforatl/districts/web/node_modules/.bin/postcss static/index.css
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
 /* Document
@@ -17877,6 +17877,16 @@ video {
 
 .delay-1000 {
   transition-delay: 1000ms;
+}
+
+.feather {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
 }
 
 @media (min-width: 640px) {
