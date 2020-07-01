@@ -33,7 +33,7 @@ function displayCandidates(candidates) {
     const elements = candidates.map((candidate) => {
       const element = document.createElement("div");
       element.classList.add(
-        "text-gray500",
+        "text-gray-500",
         "hover:text-gray-600",
         "cursor-pointer"
       );
