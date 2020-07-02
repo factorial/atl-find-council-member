@@ -2,8 +2,10 @@ package api
 
 import (
 	"backend/internal/api/models/address"
+	"backend/internal/api/models/council"
 	"backend/internal/api/models/record"
 	"net/http"
+	"path"
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/cors"
@@ -14,6 +16,7 @@ func (store *Store) NewHandler() http.Handler {
 
 	r.Use(newCorsHandler())
 
+	r.Post("/council", council.NewHandler(path.Join(store.Directory, "citycouncil.json")))
 	r.Post("/address", address.NewHandler())
 	r.Post("/record", record.NewHandler())
 
