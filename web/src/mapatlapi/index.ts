@@ -27,3 +27,16 @@ export function fetchCandidate(candidate) {
   });
   return fetch(request);
 }
+
+export function fetchDistrict(district: number) {
+  const body = { district: `District ${district}` };
+  const request = new Request(`https://mapatlapi.abrie.dev/council`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+
+  return fetch(request);
+}

@@ -1,7 +1,11 @@
 import debounce from "lodash.debounce";
 
 import { checkResponse, createElement } from "./utils";
-import { fetchAddressCandidates, fetchCandidate } from "./mapatlapi";
+import {
+  fetchAddressCandidates,
+  fetchCandidate,
+  fetchDistrict,
+} from "./mapatlapi";
 
 function searchAddress(address) {
   return fetchAddressCandidates(address)
@@ -12,6 +16,12 @@ function searchAddress(address) {
 
 function getRecord(candidate) {
   return fetchCandidate(candidate)
+    .then((resp) => checkResponse(resp))
+    .then((resp) => resp.json());
+}
+
+function getDistrict(district: number) {
+  return fetchDistrict(district)
     .then((resp) => checkResponse(resp))
     .then((resp) => resp.json());
 }
@@ -34,30 +44,60 @@ function selectCandidate(candidate) {
     const profile = document.getElementById("selected-candidate");
     profile.innerHTML = "";
 
-    profile.appendChild(
-      createElement({
+    getDistrict(record.COUNCIL_DIST).then((rep) => {
+      const district = {
         tagName: "div",
-        className: "w-1/3 p-5 bg-green-100 text-center text-xl",
-        text: `${record.COUNCIL_DIST}`,
-      })
-    );
+        className: "w-full text-center text-xl",
+        text: `${rep.District}`,
+      };
 
-    const link = {
-      tagName: "a",
-      className: "underline text-blue-500",
-      text: `${record.COUNCIL_MEMBER}`,
-      attributes: {
-        href: councilMemberNameToSlug(record.COUNCIL_MEMBER),
-      },
-    };
+      profile.appendChild(
+        createElement({
+          tagName: "div",
+          className: "w-1/3 flex items-center",
+          childs: [district],
+        })
+      );
 
-    profile.appendChild(
-      createElement({
+      const link = {
+        tagName: "a",
+        className: "underline text-blue-500",
+        text: `${rep.Name}`,
+        attributes: {
+          href: rep.Href,
+        },
+      };
+
+      const name = {
         tagName: "div",
-        className: "w-2/3 bg-green-100 py-5 text-left",
+        className: "w-full text-center",
         childs: [link],
-      })
-    );
+      };
+
+      profile.appendChild(
+        createElement({
+          tagName: "div",
+          className: "w-1/3 text-left flex items-center",
+          childs: [name],
+        })
+      );
+
+      const image = {
+        tagName: "img",
+        className: "w-12 mx-auto",
+        attributes: {
+          src: `https://citycouncil.atlantaga.gov/${rep.Image}`,
+        },
+      };
+
+      profile.appendChild(
+        createElement({
+          tagName: "div",
+          className: "w-1/3 text-left",
+          childs: [image],
+        })
+      );
+    });
   });
 }
 
