@@ -5,9 +5,10 @@ module.exports = {
     "mount:public": "mount public --to /",
     "mount:src": "mount src --to /_dist_",
     "mount:static": "mount static --to /",
-    "run:tsc": "tsc --noEmit",
+    "run:tsc": "tsc --jsx preserve --noEmit",
     "run:tsc::watch": "$1 --watch",
     "build:css": "postcss",
+    "build:tsx": "esbuild --jsx-factory=h --jsx-fragment=Fragment --loader=tsx",
   },
   plugins: [
     [
