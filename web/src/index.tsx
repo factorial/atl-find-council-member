@@ -26,14 +26,6 @@ function getDistrict(district: number) {
     .then((resp) => resp.json());
 }
 
-function councilMemberNameToSlug(name: string): string {
-  const slug = name
-    .replace(/[^\w\s]/g, "")
-    .toLowerCase()
-    .replace(/ /g, "-");
-  return `https://citycouncil.atlantaga.gov/council-members/${slug}`;
-}
-
 function selectCandidate(candidate) {
   getRecord(candidate).then(([record]) => {
     const input = document.getElementById("address-input") as HTMLInputElement;
