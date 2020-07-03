@@ -27,8 +27,8 @@ The app uses Typescript, Tailwind CSS, JSX, and Snowpack.
 
 1. Fork this repo: [click here](https://github.com/abrie/atl-find-council-member/fork)
 2. Clone the fork onto your development machine.
-3. Install dependencies: `yarn install`
-4. Change to front end's folder: `cd web`
+3. Change to front end's folder: `cd web`
+4. Install dependencies: `yarn install`
 5. Start the devserver: `yarn start`
 
 To contribute changes:
