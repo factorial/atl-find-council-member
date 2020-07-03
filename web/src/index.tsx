@@ -4,7 +4,7 @@ import { checkResponse, clearElement } from "./utils";
 import {
   fetchAddressCandidates,
   fetchCandidate,
-  fetchDistrict,
+  fetchRepresentative,
 } from "./mapatlapi";
 
 async function searchAddress(address) {
@@ -20,8 +20,8 @@ function getRecord(candidate) {
     .then((resp) => resp.json());
 }
 
-function getDistrict(district: number) {
-  return fetchDistrict(district)
+function getRepresentative(district: number) {
+  return fetchRepresentative(district)
     .then((resp) => checkResponse(resp))
     .then((resp) => resp.json());
 }
@@ -34,21 +34,21 @@ function selectCandidate(candidate) {
     const list = document.getElementById("candidates");
     clearElement(list);
 
-    getDistrict(record.COUNCIL_DIST)
-      .then((rep) => (
+    getRepresentative(record.COUNCIL_DIST)
+      .then((representative) => (
         <div className="py-3 flex justify-between">
           <div className="w-1/3 flex items-center justify-left">
-            <div className="text-xl">{rep.District}</div>
+            <div className="text-xl">{representative.District}</div>
           </div>
           <div className="w-1/3 flex items-center justify-center">
-            <a className="text-xl" href={rep.Href}>
-              {rep.Name}
+            <a className="text-xl" href={representative.Href}>
+              {representative.Name}
             </a>
           </div>
           <div className="w-1/3 flex items-center justify-end">
             <img
               className="w-24"
-              src={`https://citycouncil.atlantaga.gov${rep.Image}`}
+              src={`https://citycouncil.atlantaga.gov${representative.Image}`}
             />
           </div>
         </div>

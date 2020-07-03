@@ -28,7 +28,7 @@ export function fetchCandidate(candidate) {
   return fetch(request);
 }
 
-export function fetchDistrict(district: number) {
+export function fetchRepresentative(district: number) {
   const body = { district: `District ${district}` };
   const request = new Request(`https://mapatlapi.abrie.dev/council`, {
     method: "POST",
