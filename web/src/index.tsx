@@ -7,7 +7,7 @@ import {
   fetchDistrict,
 } from "./mapatlapi";
 
-function searchAddress(address) {
+async function searchAddress(address) {
   return fetchAddressCandidates(address)
     .then((resp) => checkResponse(resp))
     .then((resp) => resp.json())
@@ -80,17 +80,16 @@ function displayCandidates(candidates) {
 }
 
 function run() {
-  const debouncedSearchAddress = debounce(searchAddress, 250);
+  const debouncedSearchAddress = debounce(searchAddress, 350);
 
   const addressInputElement = document.getElementById(
     "address-input"
   ) as HTMLInputElement;
 
-  addressInputElement.addEventListener("input", (evt) => {
+  addressInputElement.addEventListener("input", async (evt) => {
     const target = evt.currentTarget as HTMLInputElement;
-    searchAddress(target.value).then((candidates) =>
-      displayCandidates(candidates)
-    );
+    const candidates = await debouncedSearchAddress(target.value);
+    displayCandidates(candidates);
   });
 }
 
